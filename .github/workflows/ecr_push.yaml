@@ -23,7 +23,7 @@ jobs:
           docker build -t docker/url_shortner .
       - name: Tag Docker Image for Public ECR
         run: |
-          docker tag docker/url_shortner:emmanuel_asidigbe_urlshortner public.ecr.aws/n9b8b2z2/docker/url_shortner:emmanuel_asidigbe_urlshortner
+          docker tag docker/url_shortner:latest public.ecr.aws/n9b8b2z2/docker/url_shortner:emmanuel_asidigbe_urlshortner
       - name: Push Docker Image to ECR
         run: |
           docker push public.ecr.aws/n9b8b2z2/docker/url_shortner:emmanuel_asidigbe_urlshortner

@@ -1,0 +1,30 @@
+name: Push Docker Image to Public ECR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_to_public_ecr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate with Public AWS ECR
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}/${{ secrets.ECR_REPO_NAME }}
+          registry: public.ecr.aws
+          tags: emmanuel_asidigbe_urlshortner

@@ -1,0 +1,34 @@
+<%- include('partials/header.ejs') %>
+
+<div class="text-5xl text-neutral-500 mb-12 ">URL Shortener😉😎</div>
+<form action="/shorten" method="post">
+  <input
+    type="text"
+    name="longUrl"
+    id="url"
+    placeholder="enter url"
+    required
+    class="text-xs px-2 text-neutral-600 bg-neutral-800 outline-none placeholder:text-neutral-600 placeholder:text-xs cursor-pointer placeholder:hover:text-neutral-500 duration-500"
+  />
+
+  <button
+    type="submit"
+    class="text-neutral-600 px-2 hover:text-neutral-400 duration-500"
+  >
+    send
+  </button>
+</form>
+<div class="text-neutral-600 mt-6 text-xs">
+  <h1>Current URLs</h1>
+  <ul>
+    <% data.forEach(function(url) { %>
+      <li>
+        <a href="/<%= url.shortCode %>" class="text-blue-500">
+          <%= url.longUrl %> → <%= 'http://localhost:3000/' + url.shortCode %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
+<%- include('partials/footer.ejs') %>

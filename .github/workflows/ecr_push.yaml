@@ -26,5 +26,5 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}/${{ secrets.ECR_REPO_NAME }}
-          registry: public.ecr.aws
+          registry: public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}
           tags: emmanuel_asidigbe_urlshortner
